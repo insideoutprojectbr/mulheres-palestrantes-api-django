@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'speaker.apps.SpeakerConfig'
+    'speaker.apps.SpeakerConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
