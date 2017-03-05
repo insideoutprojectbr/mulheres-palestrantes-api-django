@@ -66,10 +66,10 @@ class Speaker(AbstractUser):
 def model_post_save(sender, **kwargs):
     user = kwargs['instance']
     try:
-        Application.objects.get_or_create(name='client',
+        Application.objects.get_or_create(name='password',
                                           user=user,
-                                          client_type='confidential',
-                                          authorization_grant_type='client-credentials',
+                                          client_type='public',
+                                          authorization_grant_type='password',
                                           skip_authorization=True)
         logger.info('An application was generated for user {}'.format(user))
     except Exception as e:

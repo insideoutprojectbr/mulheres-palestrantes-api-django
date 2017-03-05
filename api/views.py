@@ -1,14 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
-
 
 from speaker.models import Speaker
 from api.serializers import SpeakerSerializer
+from api.permissions import UserPermission
 
 
 class SpeakerViewSet(ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (UserPermission,)
     queryset = Speaker.objects.all()
     serializer_class = SpeakerSerializer
 
