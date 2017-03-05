@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from speaker.views import SpeakerViewSet
+from api.views import SpeakerViewSet
 
 
 router = routers.DefaultRouter()

@@ -1,5 +1,5 @@
 """
-WSGI config for mulheres_palestrantes_admin project.
+WSGI config for mulheres_palestrantes project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mulheres_palestrantes_admin.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mulheres_palestrantes.settings")
 
 application = get_wsgi_application()

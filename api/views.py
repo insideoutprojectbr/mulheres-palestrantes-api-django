@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 
 
 from speaker.models import Speaker
-from speaker.serializers import SpeakerSerializer
+from api.serializers import SpeakerSerializer
 
 
 class SpeakerViewSet(ModelViewSet):
