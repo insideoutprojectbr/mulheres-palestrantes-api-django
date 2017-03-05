@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+
+from speaker.models import Speaker
+from speaker.serializers import SpeakerSerializer
+
+
+class SpeakerViewSet(ModelViewSet):
+
+    queryset = Speaker.objects.all()
+    serializer_class = SpeakerSerializer
