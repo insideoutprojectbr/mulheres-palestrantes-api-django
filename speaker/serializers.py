@@ -5,6 +5,9 @@ from speaker.models import Speaker, Interest
 
 
 class SpeakerSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    password = serializers.CharField(write_only=True)
     interests = serializers.StringRelatedField(many=True)
     created_at = serializers.ReadOnlyField(source='date_joined')
     fb = serializers.ReadOnlyField(source='facebook_url')
@@ -16,7 +19,8 @@ class SpeakerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Speaker
-        fields = ('id', 'email', 'interests', 'site', 'created_at', 'updated_at',
+        fields = ('id', 'email', 'username', 'last_name', 'first_name',
+                  'interests', 'site', 'created_at', 'updated_at', 'password',
                   'fb', 'linkedin', 'behance', 'github', 'twitter', 'medium', 'photo',)
 
 

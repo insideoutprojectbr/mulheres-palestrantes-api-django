@@ -1,7 +1,14 @@
+import logging
+
 from django_gravatar.helpers import get_gravatar_url
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.timezone import now
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from oauth2_provider.models import Application
+
+logger = logging.getLogger()
 
 
 class Speaker(AbstractUser):
@@ -53,6 +60,20 @@ class Speaker(AbstractUser):
     @property
     def medium_url(self):
         return "https://medium.com/{}".format(self.medium) if self.medium else None
+
+
+@receiver(post_save, sender=Speaker)
+def model_post_save(sender, **kwargs):
+    user = kwargs['instance']
+    try:
+        Application.objects.get_or_create(name='client',
+                                          user=user,
+                                          client_type='confidential',
+                                          authorization_grant_type='client-credentials',
+                                          skip_authorization=True)
+        logger.info('An application was generated for user {}'.format(user))
+    except Exception as e:
+        logger.error('Couldn\'t generate an application for user {} '.format(user))
 
 
 class Interest(models.Model):
