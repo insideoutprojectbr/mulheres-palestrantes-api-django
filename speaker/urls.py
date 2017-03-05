@@ -8,5 +8,5 @@ router.register(r'speakers', SpeakerViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^auth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
