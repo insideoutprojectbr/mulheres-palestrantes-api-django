@@ -7,6 +7,6 @@ router = routers.DefaultRouter()
 router.register(r'speakers', SpeakerViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^auth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]

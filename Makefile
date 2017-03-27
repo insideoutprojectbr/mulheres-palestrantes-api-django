@@ -11,5 +11,9 @@ run: migrate
 shell:
 	venv/bin/python manage.py shell
 
-test:
+test: clear
 	venv/bin/pytest
+
+clear:
+	find . -name "*.pyc" -exec rm -rf {} \;
+
