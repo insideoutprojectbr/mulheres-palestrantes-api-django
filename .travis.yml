@@ -3,3 +3,5 @@ python:
   - "3.6"
 install: "pip install -r requirements-dev.txt"
 script: pytest
+after_success:
+  - codeclimate-test-reporter --file=.coverage
