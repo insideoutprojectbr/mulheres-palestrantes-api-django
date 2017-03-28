@@ -116,7 +116,7 @@ USE_TZ = config('USE_TZ', default=True, cast=bool)
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'speaker.Speaker'
+AUTH_USER_MODEL = 'speaker.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -136,3 +136,17 @@ OAUTH2_PROVIDER = {
 }
 
 GRAVATAR_DEFAULT_IMAGE = config('GRAVATAR_DEFAULT_IMAGE', default='retro')
+
+FACEBOOK_URL = config('FACEBOOK_URL', default='https://facebook.com/')
+
+TWITTER_URL = config('TWITTER_URL', default='https://twitter.com/')
+
+LINKEDIN_URL = config('LINKEDIN_URL', default='https://www.linkedin.com/in/')
+
+GITHUB_URL = config('GITHUB_URL', default='https://github.com/')
+
+BEHANCE_URL = config('BEHANCE_URL', default='https://www.behance.net/')
+
+MEDIUM_URL = config('MEDIUM_URL', default='https://medium.com/')
+
+HASHID_FIELD_SALT = config('HASHID_FIELD_SALT')
