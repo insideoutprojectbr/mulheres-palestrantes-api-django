@@ -7,14 +7,10 @@ from model_mommy import mommy
 @pytest.fixture
 def speaker():
     return mommy.prepare('speaker.Speaker',
-                         first_name='Tracy',
-                         last_name='Doe',
+                         name='Tracy Doe',
                          image_url=None,
                          email='tracy.doe@random.mail.com')
 
-
-def test_name(speaker):
-    assert speaker.name == 'Tracy Doe'
 
 def test_photo(speaker):
     url = urlparse(speaker.photo)

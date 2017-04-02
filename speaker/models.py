@@ -1,5 +1,6 @@
 import logging
 
+from django.conf import settings
 from django_gravatar.helpers import get_gravatar_url
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -7,12 +8,20 @@ from django.utils.timezone import now
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from oauth2_provider.models import Application
+from hashid_field import HashidField
 
 logger = logging.getLogger()
 
 
-class Speaker(AbstractUser):
-    email = models.EmailField(unique=True, max_length=100, db_index=True)
+class User(AbstractUser):
+    email = models.EmailField(unique=True, max_length=200, db_index=True, blank=True, null=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ('username',)
+
+
+class Speaker(models.Model):
+    email = models.EmailField(unique=True, max_length=200, db_index=True)
+    name = models.CharField(max_length=100, db_index=True)
     location = models.CharField(blank=True, null=True, max_length=100, db_index=True)
     facebook = models.CharField(blank=True, null=True, max_length=50)
     twitter = models.CharField(blank=True, null=True, max_length=50)
@@ -23,15 +32,14 @@ class Speaker(AbstractUser):
     image_url = models.URLField(blank=True, null=True, max_length=300)
     site = models.URLField(blank=True, null=True, max_length=300)
     published = models.BooleanField(default=False, db_index=True)
-    interests = models.ManyToManyField('Interest')
     updated_at = models.DateTimeField(auto_now=True)
+    interests = models.ManyToManyField('Interest')
+    user = models.OneToOneField('User', blank=True, null=True)
+    confirmation_key = HashidField(blank=True, null=True)
+    active = models.BooleanField(default=False)
 
     def __str__(self):
         return "{}, {}".format(self.name, self.email)
-
-    @property
-    def name(self):
-        return "{} {}".format(self.first_name, self.last_name)
 
     @property
     def photo(self):
@@ -39,27 +47,27 @@ class Speaker(AbstractUser):
 
     @property
     def facebook_url(self):
-        return "https://facebook.com/{}".format(self.facebook) if self.facebook else None
+        return "{}{}".format(settings.FACEBOOK_URL, self.facebook) if self.facebook else None
 
     @property
     def twitter_url(self):
-        return "https://twitter.com/{}".format(self.twitter) if self.twitter else None
+        return "{}{}".format(settings.TWITTER_URL, self.twitter) if self.twitter else None
 
     @property
     def linkedin_url(self):
-        return "https://www.linkedin.com/in/{}".format(self.linkedin) if self.linkedin else None
+        return "{}{}".format(settings.LINKEDIN_URL, self.linkedin) if self.linkedin else None
 
     @property
     def github_url(self):
-        return "https://github.com/{}".format(self.github) if self.github else None
+        return "{}{}".format(settings.GITHUB_URL, self.github) if self.github else None
 
     @property
     def behance_url(self):
-        return "https://www.behance.net/{}".format(self.behance) if self.behance else None
+        return "{}{}".format(settings.BEHANCE_URL, self.behance) if self.behance else None
 
     @property
     def medium_url(self):
-        return "https://medium.com/{}".format(self.medium) if self.medium else None
+        return "{}{}".format(settings.MEDIUM_URL, self.medium) if self.medium else None
 
 
 @receiver(post_save, sender=Speaker)

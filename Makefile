@@ -1,3 +1,6 @@
+osrequirements:
+	sudo apt-get install python3-dev libmysqlclient-dev
+
 setup:
 	virtualenv --python python3 venv
 	venv/bin/pip install -r requirements-dev.txt
@@ -16,4 +19,3 @@ test: clear
 
 clear:
 	find . -name "*.pyc" -exec rm -rf {} \;
-
