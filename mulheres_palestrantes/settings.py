@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'mulheres_palestrantes.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///mulheres_palestrantes.sqlite')
+    'default': dj_database_url.parse(config('DATABASE_URL', default='sqlite:///mulheres_palestrantes.sqlite'))
 }
 
 
