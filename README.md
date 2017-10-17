@@ -1,4 +1,6 @@
-# mulheres-palestrantes-api
+# mulheres-palestrantes-api-django
+
+**DEPRECATED**
 
 [![Build Status](https://travis-ci.org/insideoutprojectbr/mulheres-palestrantes-api.svg?branch=master)](https://travis-ci.org/insideoutprojectbr/mulheres-palestrantes-api)
 [![Code Climate](https://codeclimate.com/github/insideoutprojectbr/mulheres-palestrantes-api/badges/gpa.svg)](https://codeclimate.com/github/insideoutprojectbr/mulheres-palestrantes-api)
