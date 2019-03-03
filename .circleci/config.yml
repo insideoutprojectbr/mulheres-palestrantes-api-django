@@ -8,12 +8,31 @@ jobs:
           - HASHID_FIELD_SALT=sdwt45t  
     steps:
       - checkout
+      - run: 
+          name: Install OS dependencies
+          command: pip install -U pip pipenv
+      - run:
+          name: Install Code Climate Test Reporter Tool
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - run:
           name: Install package dependencies
           command: make setup
       - run:
+          command: |
+            ./cc-test-reporter before-build
+      - run:
           name: Run unit tests
           command: make test
+      - run:
+          name: Upload test coverage to Code Climate
+          command: |
+            ./cc-test-reporter format-coverage coverage.xml -t coverage.py
+            ./cc-test-reporter upload-coverage
+      - run:
+          command: |
+            ./cc-test-reporter after-build -t coverage.py
       - store_artifacts:
           destination: htmlcov
           path: htmlcov

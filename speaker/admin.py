@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from speaker.models import Speaker, Interest
 
+
 class SpeakerAdmin(admin.ModelAdmin):
     pass
 

@@ -8,14 +8,17 @@ import hashid_field.field
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('speaker', '0001_initial'),
-    ]
+    dependencies = [("speaker", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='speaker',
-            name='confirmation_key',
-            field=hashid_field.field.HashidField(alphabet='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', blank=True, min_length=7, null=True),
-        ),
+            model_name="speaker",
+            name="confirmation_key",
+            field=hashid_field.field.HashidField(
+                alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                blank=True,
+                min_length=7,
+                null=True,
+            ),
+        )
     ]
