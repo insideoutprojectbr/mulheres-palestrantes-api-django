@@ -33,8 +33,6 @@ jobs:
       - run:
           command: |
             ./cc-test-reporter after-build -t coverage.py
-      - run: 
-          command: make check
       - store_artifacts:
           destination: htmlcov
           path: htmlcov

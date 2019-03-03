@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('speaker', '0002_speaker_confirmation_key'),
-    ]
+    dependencies = [("speaker", "0002_speaker_confirmation_key")]
 
     operations = [
         migrations.AddField(
-            model_name='speaker',
-            name='active',
+            model_name="speaker",
+            name="active",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

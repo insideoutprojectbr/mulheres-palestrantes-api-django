@@ -3,8 +3,10 @@ import os
 from decouple import config
 import dj_database_url
 
+
 def parse_str_list(string):
-    return string.split(',')
+    return string.split(",")
+
 
 """
 Django settings for mulheres_palestrantes project.
@@ -27,126 +29,127 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=parse_str_list)
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=parse_str_list
+)
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'django_gravatar',
-    'oauth2_provider',
-    'speaker.apps.SpeakerConfig',
-    'api.apps.ApiConfig',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "django_gravatar",
+    "oauth2_provider",
+    "speaker.apps.SpeakerConfig",
+    "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'mulheres_palestrantes.urls'
+ROOT_URLCONF = "mulheres_palestrantes.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
         },
-    },
+    }
 ]
 
-WSGI_APPLICATION = 'mulheres_palestrantes.wsgi.application'
+WSGI_APPLICATION = "mulheres_palestrantes.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL', default='sqlite:///mulheres_palestrantes.sqlite'))
+    "default": dj_database_url.parse(
+        config("DATABASE_URL", default="sqlite:///mulheres_palestrantes.sqlite")
+    )
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = config('LANGUAGE_CODE', default='en-us')
+LANGUAGE_CODE = config("LANGUAGE_CODE", default="en-us")
 
-TIME_ZONE = config('LANGUAGE_CODE', default='UTC')
+TIME_ZONE = config("LANGUAGE_CODE", default="UTC")
 
-USE_I18N = config('USE_I18N', default=True, cast=bool)
+USE_I18N = config("USE_I18N", default=True, cast=bool)
 
-USE_L10N = config('USE_L10N', default=True, cast=bool)
+USE_L10N = config("USE_L10N", default=True, cast=bool)
 
-USE_TZ = config('USE_TZ', default=True, cast=bool)
+USE_TZ = config("USE_TZ", default=True, cast=bool)
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
-AUTH_USER_MODEL = 'speaker.User'
+AUTH_USER_MODEL = "speaker.User"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "oauth2_provider.ext.rest_framework.OAuth2Authentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 OAUTH2_PROVIDER = {
-    'SCOPES': {
-        'read': 'Read scope',
-        'write': 'Write scope',
-        'groups': 'Access to your groups'
+    "SCOPES": {
+        "read": "Read scope",
+        "write": "Write scope",
+        "groups": "Access to your groups",
     }
 }
 
-GRAVATAR_DEFAULT_IMAGE = config('GRAVATAR_DEFAULT_IMAGE', default='retro')
+GRAVATAR_DEFAULT_IMAGE = config("GRAVATAR_DEFAULT_IMAGE", default="retro")
 
-FACEBOOK_URL = config('FACEBOOK_URL', default='https://facebook.com/')
+FACEBOOK_URL = config("FACEBOOK_URL", default="https://facebook.com/")
 
-TWITTER_URL = config('TWITTER_URL', default='https://twitter.com/')
+TWITTER_URL = config("TWITTER_URL", default="https://twitter.com/")
 
-LINKEDIN_URL = config('LINKEDIN_URL', default='https://www.linkedin.com/in/')
+LINKEDIN_URL = config("LINKEDIN_URL", default="https://www.linkedin.com/in/")
 
-GITHUB_URL = config('GITHUB_URL', default='https://github.com/')
+GITHUB_URL = config("GITHUB_URL", default="https://github.com/")
 
-BEHANCE_URL = config('BEHANCE_URL', default='https://www.behance.net/')
+BEHANCE_URL = config("BEHANCE_URL", default="https://www.behance.net/")
 
-MEDIUM_URL = config('MEDIUM_URL', default='https://medium.com/')
+MEDIUM_URL = config("MEDIUM_URL", default="https://medium.com/")
 
-HASHID_FIELD_SALT = config('HASHID_FIELD_SALT')
+HASHID_FIELD_SALT = config("HASHID_FIELD_SALT")
