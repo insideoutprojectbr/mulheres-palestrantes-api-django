@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7.2
+        environment: 
+          - SECRET_KEY=sAE32W4WTESSasSD
+          - HASHID_FIELD_SALT=sdwt45t  
+    steps:
+      - checkout
+      - run:
+          name: Install package dependencies
+          command: make setup
+      - run:
+          name: Run unit tests
+          command: make test
+      - store_artifacts:
+          destination: htmlcov
+          path: htmlcov
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/

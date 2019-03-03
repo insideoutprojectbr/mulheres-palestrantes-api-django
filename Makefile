@@ -2,20 +2,20 @@ osrequirements:
 	sudo apt-get install python3-dev libmysqlclient-dev
 
 setup:
-	virtualenv --python python3 venv
-	venv/bin/pip install -r requirements-dev.txt
+	pipenv --python 3.7.2
+	pipenv install --dev
 
 migrate:
-	venv/bin/python manage.py migrate
+	pipenv run python manage.py migrate
 
 run: migrate
-	venv/bin/python manage.py runserver
+	pipenv run python manage.py runserver
 
 shell:
-	venv/bin/python manage.py shell
+	pipenv run python manage.py shell
 
 test: clear
-	venv/bin/pytest
+	pipenv run pytest
 
 clear:
 	find . -name "*.pyc" -exec rm -rf {} \;

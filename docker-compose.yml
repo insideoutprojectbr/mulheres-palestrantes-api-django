@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    environment:
+      FLASK_ENV: development
+      PORT: 4000
+      CORS_ORIGINS: '*'
+      ENVIRONMENT: dev
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
